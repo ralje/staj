@@ -25,10 +25,10 @@ int IndieLib()
 	
 	// ----- Surface loading -----
 
-	// Loading Background
-	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
-	//promqna na backgrounda
-	if (!mI->_surfaceManager->add(mSurfaceBack, "../SpaceGame/newresources/newbg.png", IND_OPAQUE, IND_32)) return 0;
+	// nov animiran bg
+	IND_Animation  *newBG = IND_Animation::newAnimation();
+	if (!mI->_animationManager->addToSurface(newBG, "../SpaceGame/animation/bganimation.xml", IND_OPAQUE, IND_32)) return 0;
+
 
 	// Loading sprite of a star
 	IND_Surface *mSurfaceHeart= IND_Surface::newSurface();
@@ -49,11 +49,9 @@ int IndieLib()
 	if (!mI->_animationManager->addToSurface(mAnimationDust, "../SpaceGame/resources/animations/dust.xml", IND_ALPHA, IND_16, 255, 0, 255)) return 0;
 
 	// ----- Set the surface and animations into 2d entities -----
-
-	// Creating 2d entity for the background
 	IND_Entity2d *mBack = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mBack);					// Entity adding
-	mBack->setSurface(mSurfaceBack);					// Set the surface into the entity
+	mBack->setAnimation(newBG);
 
 	//surce
 	//pylnim vector s 3 entity2d obekta, inicializirame gi chreze IND_Entity2d::newEntity2d(), pylnim gi v scenata prez entity2dManager-a i im postavqme textura s setSurface
